@@ -149,8 +149,45 @@ var sumBelow = function(n) {
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+
+// I: two integers (a range, non inclusive)
+// O:  array of integers
+// C:
+// E: return empty array if no integers in range
+
+// declare result array
+
+// base case:
+// if x plus one is equal to y
+  // return [];
+
+// recursive case:
+// decrement y
+// concat decremented value of y with result array
+// return result array concated with a call recursive function on new value of y
+
+// return result array
 var range = function(x, y) {
+
+
+  var integers = [];
+
+  if (x + 1 === y || x === y || x - 1 === y) {
+    return integers;
+  } else if (x > y) {
+    x--;
+    integers.push(x);
+    return integers.concat(range(x, y));
+  } else {
+    x++;
+    integers.push(x);
+    debugger;
+    return integers.concat(range(x, y));
+  }
+  return integers;
 };
+
+console.log(range(3, 8));
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
