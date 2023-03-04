@@ -97,13 +97,54 @@ var arraySum = function(input) {
 };
 
 // 4. Check if a number is even.
+// I: number
+// O: boolean
+// C: do not use modulo
+// E:
+
+// subtract 2 from n until it equals 0 or 1
+
 var isEven = function(n) {
+  n = Math.abs(n);
+  if (n === 0) {
+    return true;
+  } else if (n === 1) {
+    return false;
+  }
+  return isEven(n - 2);
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
+
+// I: integer
+// O: sum
+// C:
+// E:
+
+// base case:
+// if int is 0, return sum
+
+// recursive case:
+  // decrement int by 1
+  // add int to sum
+  // call function again
+
 var sumBelow = function(n) {
+  var sum = 0;
+  if (n === 0) {
+    return n;
+  } else if (n > 0) {
+    n--;
+    sum += n;
+    return sum + sumBelow(n);
+  } else {
+    n++;
+    sum += n;
+    return sum + sumBelow(n);
+  }
+  return sum;
 };
 
 // 6. Get the integers within a range (x, y).
