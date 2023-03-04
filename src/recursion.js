@@ -67,20 +67,33 @@ var sum = function(array) {
   }
 
   return arrayCopy.pop() + sum(arrayCopy);
-
-  // var innerFunction = function(newArray) {
-  //  console.log(newArray.shift());
-  //  result += newArray.shift();
-  //  sum(newArray);
-  // }
-  // innerFunction(array);
-  // console.log('result', result);
-  // return result;
 };
-console.log(sum([1, 2, 3, 4, 5]));
+
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function(array) {
+
+// I: array containing nested arrays
+// O: sum of all integers
+// C:
+// E:
+
+// base case:
+// if input is not an array
+  // return current element (or add to sum)
+
+// if element is an array
+  // iterate the array
+
+var arraySum = function(input) {
+  var sum = 0;
+  if (!Array.isArray(input)) {
+    return input;
+  } else {
+    input.forEach(function(item) {
+      sum += arraySum(item);
+    });
+  }
+  return sum;
 };
 
 // 4. Check if a number is even.
