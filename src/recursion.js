@@ -6,14 +6,78 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
+
+// I: integer
+// O: factorial of the given integer (another integer)
+// C:
+// E:
+
+// if n is equal to 1
+  // return factorial
+
+// else call recursive function on n minus 1
+
 var factorial = function(n) {
+  var result = n;
+
+  if (n < 0) {
+    return null;
+  }
+
+  if (n === 0) {
+    return 1;
+  }
+
+  if (n === 1) {
+    return result;
+  }
+
+  var innerFunction = function(int) {
+    result *= factorial(n-1);
+  }
+
+  innerFunction(n);
+
+  return result;
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
-var sum = function(array) {
-};
 
+// I: array of nums
+// O: sum
+// C: cannot add parameter
+// E: if array is empty, return 0;
+
+// edge case
+
+// declare sum variable set to zero
+
+// base case:
+// if length of array is zero
+  // return sum
+
+// recursive case:
+// for each element add to sum and remove element from array
+
+var sum = function(array) {
+  var arrayCopy = array.slice();
+  if (arrayCopy.length === 0) {
+    return 0;
+  }
+
+  return arrayCopy.pop() + sum(arrayCopy);
+
+  // var innerFunction = function(newArray) {
+  //  console.log(newArray.shift());
+  //  result += newArray.shift();
+  //  sum(newArray);
+  // }
+  // innerFunction(array);
+  // console.log('result', result);
+  // return result;
+};
+console.log(sum([1, 2, 3, 4, 5]));
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
