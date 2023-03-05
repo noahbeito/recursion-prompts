@@ -187,21 +187,76 @@ var range = function(x, y) {
   return integers;
 };
 
-console.log(range(3, 8));
-
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
+
+// I: two integers the base and exponent
+// O: computed integer
+// C:
+// E: if exponent is 0 return 1.
+
+// declare result set to 1
+
+// base case:
+// if exponent is 0, return 1
+
+// recursive case:
+// (positive integers only)
+// multiply result by the base
+// decrement exponent
+// return result multiplied by the function called again with same base and the decremented exp
+
+// return result
 var exponent = function(base, exp) {
+  var result = 1;
+
+  if (exp === 0) {
+    return 1;
+  } else if (exp < 0) {
+    parseFloat(result /= base);
+    exp++;
+    return result * parseFloat(exponent(base, exp));
+  } else {
+    result *= base;
+    exp--;
+    return result * exponent(base, exp);
+  }
+  return result;
 };
+
+console.log(exponent(4, -2));
+console.log(exponent(5, -4));
+console.log(exponent(2, -5));
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
+
+// I: number
+// O: boolean
+// C:
+// E: if n is 1 return true
+
+
+// base case:
+// if n === 2
+  // return true
+
+// recursive case:
+// return power of two function called on n divided by 2
+
 var powerOfTwo = function(n) {
+  if (n === 1 || n === 2) {
+    return true;
+  } else if (n < 1) {
+    return false;
+  } else {
+    return powerOfTwo(n / 2);
+  }
 };
 
 // 9. Write a function that reverses a string.
