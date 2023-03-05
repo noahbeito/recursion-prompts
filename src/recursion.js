@@ -294,7 +294,36 @@ var reverse = function(string) {
 console.log(reverse('hello'));
 
 // 10. Write a function that determines if a string is a palindrome.
+
+// I: string
+// O: boolean
+// C: ignore capital letters
+// E:
+
+// set string to lower case
+// set boolean flag true
+// base case:
+// if beginning char does not match end character
+  // set boolean flag false
+// else
+  // call recursive case on string sliced from index one to last index
+
+// return boolean flag
+
 var palindrome = function(string) {
+  string = string.toLowerCase();
+  var isPalindrome = true;
+
+  if (string.length < 1) {
+    return isPalindrome;
+  }
+
+  if (string[0] !== string[string.length - 1]) {
+    return isPalindrome = false;
+  } else {
+    return palindrome(string.slice(1, string.length - 1));
+  }
+  return isPalindrome;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
