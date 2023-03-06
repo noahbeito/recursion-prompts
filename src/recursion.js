@@ -452,8 +452,8 @@ var countValuesInObj = function(obj, value) {
   return count;
 };
 
-var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
-console.log(countValuesInObj(obj, 'r'));
+// var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+// console.log(countValuesInObj(obj, 'r'));
 
 // debugger;
   // var count = 0;
@@ -499,8 +499,37 @@ console.log(countValuesInObj(obj, 'r'));
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
+
+// I: obj with nested objects
+// O: obj with replaced keys (not values)
+// C:
+// E:
+
+// base case:
+// if key is equal to 'oldKey',
+  // replace old key with new key
+  // return obj
+
+// recursive case:
+  // if current value is an object
+    // call recursive func
+
 var replaceKeysInObj = function(obj, oldKey, newKey) {
+  Object.keys(obj).forEach(function(key) {
+    if (key === oldKey) {
+      obj[newKey] = obj[key];
+      delete obj[key];
+    }
+
+    if (typeof obj[key] === 'object') {
+      replaceKeysInObj(obj[key], oldKey, newKey);
+    }
+  })
+  return obj;
 };
+
+var obj = {e:{x:'y'},t:{r:{e:'r'},p:{y:'r'}},y:'e'};
+console.log(replaceKeysInObj(obj, 'r', 'new'));
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
 // number is the sum of the previous two.
