@@ -331,8 +331,25 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
+
+// base case:
+// if x is less than y
+  // return x
+
+// recursive case:
+// return recursive function passing (x - y) as x and y
+
 var modulo = function(x, y) {
+  if (x < y) {
+    return x;
+  } else if (y < 0 && y < x) {
+    return modulo((x + y), y);
+  } else {
+    return modulo((x - y), y);
+  }
 };
+
+console.log(modulo(3, -2))
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
@@ -404,8 +421,81 @@ var countKeysInObj = function(obj, key) {
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
+
+// I: object with nested objects
+// O: integer
+// C:
+// E:
+
+// declare counter
+
+// base case:
+// if input is not an object
+  // increment count by 1
+  // return count
+
+// recursive case:
+// iterate obj
+
+// return count
+
 var countValuesInObj = function(obj, value) {
+  var count = 0;
+  Object.keys(obj).forEach(function(key) {
+    if (obj[key] === value) {
+      return count++;
+    }
+    if (typeof obj[key] === 'object') {
+      return count += countValuesInObj(obj[key], value);
+    }
+  })
+  return count;
 };
+
+var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+console.log(countValuesInObj(obj, 'r'));
+
+// debugger;
+  // var count = 0;
+  // for (var key in obj) {
+  //   if (obj[key] === value) {
+  //     return count++;
+  //   } else if (typeof obj[key] === 'object') {
+  //     return count + countValuesInObj(obj[key], value);
+  //   }
+  // }
+  // return count;
+
+  // var count = 0;
+  // for (var key in obj) {
+  //   if (obj[key] === value || obj === value) {
+  //     return count++;
+  //   } else if (typeof obj[key] === 'string' && obj[key] !== value) {
+  //     return count;
+  //   }
+
+  //   if (typeof obj[key] === 'object' ) {
+  //     return count + countValuesInObj(obj[key], value);
+  //   }
+  // }
+  // return count;
+
+  // debugger;
+  // var count = 0;
+  // if (obj === value) {
+  //   return count++;
+  // } else if (typeof obj !== 'object') {
+  //   return;
+  // } else {
+  //   for (var key in obj) {
+  //     return count + countValuesInObj(obj[key], value);
+  //   }
+  // }
+  // return count;
+
+// var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+// countValuesInObj(obj, 'r') // 2
+// countValuesInObj(obj, 'e') // 1
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
